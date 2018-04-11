@@ -1,0 +1,46 @@
+//para cargar la tabla Canchita
+INSERT INTO mydb.cancha
+(idCancha,ciudad)Values(0,"Lanus")
+INSERT INTO mydb.cancha
+(idCancha,ciudad)Values(1,"Quilmes")
+INSERT INTO mydb.cancha
+(idCancha,ciudad)Values(2,"Avellaneda")
+
+o
+
+INSERT INTO `cancha`(`idCancha`, `ciudad`) VALUES (1,'Banfield')
+---------------------------------------------
+---------------------------------------------
+// Reservas con id autoincrementable
+INSERT INTO 'reservas'('fecha','Cancha_idCancha') VALUES("2018-2-2",1),("2018-3-3",0),("2018-3-3",1),("2018-3-3",1),("2018-3-31",0),("2018-2-20",0)
+
+---------------------------------------------
+---------------------------------------------
+// trae la fecha de los partidos en su respectiva ciudad(cancha)
+
+Select r.fecha, c.ciudad 
+from mydb.reservas as r, mydb.cancha as c
+where c.idCancha=r.Cancha_idCancha
+
+---------------------------------------------
+---------------------------------------------
+//cantidad de reservas por cancha
+
+Select count(*) as cantidad, c.ciudad 
+from mydb.reservas as r, mydb.cancha as c
+where c.idCancha=r.Cancha_idCancha
+group by c.ciudad
+order by cantidad asc
+
+----------------------------------------------
+----------------------------------------------
+//si cambiamos "Cancha_idCancha" por otro atrivuto de la tabla trae todas las que hay
+
+Select distinct r.Cancha_idCancha
+form mydb.reservas as r
+
+----------------------------------------------
+----------------------------------------------
+//Para agregar un Equipo
+
+INSERT INTO mydb.equipo (Nombre, Reservas_idReservas) VALUES("primerEquipo",1)
